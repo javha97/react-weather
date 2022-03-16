@@ -5,7 +5,7 @@ import cloudy from './images/cloudy.png'
 import rainy from './images/raining.png'
 import './App.css';
 function Country({ time, summary, icon, temperatureHigh, temperatureLow }) {
-    console.log(icon);
+    // console.log(icon);
     let stamp = new Date(time * 1000)
     const celc = ((temperatureHigh - 32) * 5 / 9)
     const rounded = Math.round(celc)
@@ -24,7 +24,7 @@ function Country({ time, summary, icon, temperatureHigh, temperatureLow }) {
                     {stamp?.getDay() === 0 ? "Sunday" : console.log()}
                 </h3>
                 {/* <div>{name}-t Цаг агаар шөнөдөө {lowrounded} градус  </div> */}
-                {icon === 'partly-cloudy-day' ? <img className='image' src={pcloudy}></img> : console.log()}
+                {icon === 'partly-cloudy-day' && <img className='image' src={pcloudy}/>}
                 {icon === 'rain' ? <img className='image' src={rainy}></img> : console.log()}
                 {icon === 'fog' ? <img className='image' src={fog}></img> : console.log()}
                 {icon === 'cloudy' ? <img className='image' src={cloudy}></img> : console.log()}

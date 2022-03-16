@@ -2,8 +2,8 @@ import './App.css';
 import Country from './Country';
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-function Countries({ name, center, index }) {
-    const [bool, setbool] = useState(true)
+function Countries({ name, countries, center, index, setcountries }) {
+    const [bool, setbool] = useState(false)
     const [info, setinfo] = useState([])
     useEffect(() => {
         const darksky = async () => {
@@ -13,26 +13,30 @@ function Countries({ name, center, index }) {
         }
         darksky()
     }, [])
-
+    console.log(index);
+    console.log(countries);
     const clickb = () => {
-        setbool(!bool);
+        let a = countries.filter((_el, i) => {
+            return i === index
+        })
+        setcountries(a)
+        setbool(true);
     }
-    if (!bool) {
-        return (
-            <div className='flex container'>
+    return (
+        <>
+            {bool && <div className='flex container'>
                 {info.map(({ time, summary, icon, temperatureHigh, temperatureLow }, i) => {
-                    return <Country key={i} time={time} summary={summary} icon={icon} temperatureHigh={temperatureHigh} temperatureLow={temperatureLow} />
+                    return (<Country key={i} time={time} summary={summary} icon={icon} temperatureHigh={temperatureHigh} temperatureLow={temperatureLow} />)
                 })}
-            </div>
-        )
-    } else {
-        return (
-            <div
-                className='flex'>
-                <div>{index+1}.{name}</div>
-                <button onClick={clickb}>Weather</button>
-            </div>
-        );
-    }
+            </div>}
+            {!bool &&
+                <div
+                    className='flex'>
+                    <div>{index + 1}.{name}</div>
+                    <button onClick={clickb}>Weather</button>
+                </div>}
+        </>
+    )
+
 }
 export default Countries;
