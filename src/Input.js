@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-function Input({ ivalue, setivalue , inputfn, onclick, }) {
+function Input({ ivalue , inputfn, onclick, }) {
 
     return (
         <>
